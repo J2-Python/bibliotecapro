@@ -16,7 +16,7 @@ with open("secrets.json") as f :
 def get_secret(secret_field,secrets=secrets):
     try:
         return secrets[secret_field]
-    except:
+    except KeyError:
         msg='la variable %s no existe' % secret_field
         raise ImproperlyConfigured(msg)
     
