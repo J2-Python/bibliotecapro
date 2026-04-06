@@ -25,6 +25,7 @@ md: date field
 ### migraciones
 ```
 python3 manage.py makemigrations
+python3 manage.py migrate
 ```
 
 ### crear usuarios
@@ -66,4 +67,19 @@ bibliodb=# ALTER USER biblioadmin WITH password 'biblio123';
 bibliodb=# \c postgres
 You are now connected to database "postgres" as user "jota".
 postgres=# ALTER DATABASE bibliodb OWNER TO biblioadmin;
+```
+
+### Configuracion path de postgres
+```
+echo 'export PATH="/Library/PostgreSQL/17/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+psql --version
+pg_isready
+```
+
+### para borrar el cache de python
+```
+git rm -r --cached .
+git add .
+git commit -m "Ignorar archivos compilados de Python y __pycache__"
 ```

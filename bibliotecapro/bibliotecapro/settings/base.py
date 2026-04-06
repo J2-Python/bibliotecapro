@@ -1,3 +1,6 @@
+from ast import Try
+import json
+from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -5,8 +8,21 @@ from pathlib import Path
 #! la carpeta base esta a 3 niveles arriba
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+
+
+with open("secrets.json") as f :
+    secrets=json.loads(f.read())
+
+def get_secret(secret_field,secrets=secrets):
+    try:
+        return secrets[secret_field]
+    except:
+        msg='la variable %s no existe' % secret_field
+        raise ImproperlyConfigured(msg)
+    
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u1thyurk5g@%r=up_pyvm30t3u@l6_macv6&37e%9#r3$&d)hb'
+#SECRET_KEY = 'django-insecure-u1thyurk5g@%r=up_pyvm30t3u@l6_macv6&37e%9#r3$&d)hb'
+SECRET_KEY = get_secret('SECRET_KEY')
 
 DJANGO_APPS=('django.contrib.admin',
     'django.contrib.auth',

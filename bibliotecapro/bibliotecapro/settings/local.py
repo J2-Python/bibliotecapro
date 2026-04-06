@@ -10,8 +10,15 @@ ALLOWED_HOSTS = []
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        
+        'NAME': get_secret('NAME'),
+        'USER':get_secret('USER'),
+        'PASSWORD':get_secret('PASSWORD'),
+        'HOST':get_secret('HOST'),
+        'PORT':get_secret('PORT')
     }
 }
 
