@@ -30,8 +30,8 @@ DJANGO_APPS=('django.contrib.admin',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',)
-
-LOCAL_APPS=()
+#! applications esta al mimo nivel de manage.py o sea en la raiz del proyecto
+LOCAL_APPS=('applications.libro','applications.prestamo',)
 THIRD_PARTY_APPS=('rest_framework',)
 
 #CONCATENAMOS LAS APLICACIONES
