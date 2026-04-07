@@ -20,6 +20,7 @@ django-admin startapp libro
 fk: llaves foraneas
 mc: char field
 md: date field
+mimg: image field
 ```
 
 ### migraciones
@@ -82,4 +83,12 @@ pg_isready
 git rm -r --cached .
 git add .
 git commit -m "Ignorar archivos compilados de Python y __pycache__"
+```
+
+### restaurar la migracion inicial
+```
+mkdir -p tu_app/migrations
+touch tu_app/migrations/__init__.py
+python manage.py makemigrations tu_app
+python manage.py migrate --fake-initial
 ```
