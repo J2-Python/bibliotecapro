@@ -25,7 +25,8 @@ mimg: image field
 
 ### migraciones
 ```
-python3 manage.py makemigrations
+python3 manage.py makemigrations (inicial para modelos de django)
+python3 manage.py makemigrations tu_app (para migraciones en una app especifica)
 python3 manage.py migrate
 ```
 
