@@ -1,23 +1,12 @@
-from os import name
-from tabnanny import verbose
-
 from django.db import models
-
-# Managers
-
-
-class AutorManager(models.Manager):
-    def listar_autores_pais(self, pais):
-        return self.filter(country=pais)
-
-
+from .managers import AutorManager
 # Create your models here.
 class Autor(models.Model):
     name = models.CharField("Nombres", max_length=20)
     last_name = models.CharField("Apellidos", max_length=20)
     country = models.CharField("Pais", max_length=30)
     #! Objetos del modelo que se pueden utilizar conocidos como manager
-    objects = AutorManager()
+    objects: AutorManager  = AutorManager()
 
     class Meta:
         verbose_name = "Autor"  # Singular

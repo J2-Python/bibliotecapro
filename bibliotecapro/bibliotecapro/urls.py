@@ -23,4 +23,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # incluimos las rutas de la aplicacion libros
     path("", include("applications.libro.urls"), name="libro_app"),
+    # incluimos las rutas de la aplicacion prestamos
+    path("", include("applications.prestamo.urls"), name="prestamo_app"),
 ]
