@@ -1,5 +1,5 @@
 from django.db import models
-from .managers import AutorManager
+from .managers import AutorManager,LibroManager
 # Create your models here.
 class Autor(models.Model):
     name = models.CharField("Nombres", max_length=20)
@@ -37,7 +37,7 @@ class Libro(models.Model):
     date = models.DateField(blank=True, null=True)
     # front
     front = models.ImageField("Portada", upload_to="libro", blank=True, null=True)
-
+    objects:LibroManager=LibroManager()
     class Meta:
         verbose_name = "Libro"
         verbose_name_plural = "Libros"

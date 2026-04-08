@@ -1,4 +1,3 @@
-from ast import Try
 import json
 from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
