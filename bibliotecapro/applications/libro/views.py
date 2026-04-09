@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView
 from rest_framework.request import Request
-from .serializers import AutorSerializer, LibroSerializer
+from .serializers import AutorSerializer, LibroSerializer,PaginationSerializer
 from .models import Autor, Libro
 from typing import cast
 # Create your views here.
@@ -77,3 +77,14 @@ class FiltrarLibros(ListAPIView):
         titulo = request.query_params.get("titulo", "")
         anio= request.query_params.get("anio", 1990)
         return Libro.objects.filtrar_libros(titulo,anio)
+    
+class LibrosAurtor(ListAPIView):
+    serializer_class=LibroSerializer
+    #Paginar de 3 maximo 50 paginas
+    pagination_class=PaginationSerializer
+    def get_queryset(self):
+        request = cast(Request, self.request)
+        autor = request.query_params.get("autor_name", "")
+        print(autor)
+        page=request.query_params.get('page','')
+        return Libro.objects.por_autor(autor)

@@ -23,3 +23,6 @@ class LibroManager(models.Manager):
         return self.filter(titulo__icontains=titulo, date__year__gt=anio).order_by(
             "titulo"
         )
+    def por_autor(self,autor_name):
+        #hago referencia al campo autor que es una fk en librotraigo el campo name
+        return self.filter(autor__name__icontains=autor_name).order_by('date')
