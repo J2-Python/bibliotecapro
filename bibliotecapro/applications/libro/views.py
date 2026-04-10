@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView
+from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView,RetrieveAPIView
 from rest_framework.request import Request
+from rest_framework.response import Response
 from .serializers import AutorSerializer, LibroSerializer,PaginationSerializer
 from .models import Autor, Libro
 from typing import cast
@@ -78,7 +80,7 @@ class FiltrarLibros(ListAPIView):
         anio= request.query_params.get("anio", 1990)
         return Libro.objects.filtrar_libros(titulo,anio)
     
-class LibrosAurtor(ListAPIView):
+class LibrosAutor(ListAPIView):
     serializer_class=LibroSerializer
     #Paginar de 3 maximo 50 paginas
     pagination_class=PaginationSerializer
@@ -88,3 +90,30 @@ class LibrosAurtor(ListAPIView):
         print(autor)
         page=request.query_params.get('page','')
         return Libro.objects.por_autor(autor)
+
+class DetailAutor(RetrieveAPIView):
+    serializer_class=AutorSerializer
+    
+    # Se ejecuta para buscar los datos
+    def get_queryset(self):
+        return Autor.objects.filter(country='españa')
+    #Para validar quien puede ver o definir como se puede mostrar la informacion
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+class SaludosPostman(APIView):
+    #sobreescribimos el metodo get y post
+    def get(self,request):
+        print("Estamos en en el get")
+        print(request)
+        return Response({'status':'ok GET'})
+    def post(self,request):
+        print("Estamos en en el post")
+        print(request)
+        return Response({'status':'ok post'})
+    def delete(self,request):
+        print("Estamos en en el delete")
+        print(request)
+        return Response({'status':'ok delete'})

@@ -1,5 +1,5 @@
 from django.urls import path,register_converter
-from .views import ListaAutores,FiltroAutores,LibrosPosteriores,LibrosPorTitulo,FiltrarLibros,LibrosAurtor
+from .views import DetailAutor, ListaAutores,FiltroAutores,LibrosPosteriores,LibrosPorTitulo,FiltrarLibros,LibrosAutor,SaludosPostman
 from .converters import ValidYearsConvert,TwoDigitsNumber
 #! este archivo tiene que ser referenciado en el archivo urls.py principal del proyecto que es el unico que reconoce python.
 app_name='libro_app'
@@ -15,6 +15,9 @@ urlpatterns = [
     path('api/libro/posteriores/<yyyy:year>/',LibrosPosteriores.as_view()),
     path('api/libro/por-titulo/',LibrosPorTitulo.as_view()),
     path('api/libro/filtrar/',FiltrarLibros.as_view()),
-    path('api/libro/por-autor/',LibrosAurtor.as_view())
+    path('api/libro/por-autor/',LibrosAutor.as_view()),
+    path('api/autor/detail/<pk>',DetailAutor.as_view()),
+    path('api/postman',SaludosPostman.as_view()),
+    
     
 ]
