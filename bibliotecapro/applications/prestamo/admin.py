@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import Estudiante,Prestamo,Devolucion
 @admin.register(Estudiante)
 class EstudianteAdmin(admin.ModelAdmin):
-    list_display=('name','last_name')
+    list_display=('name','last_name','id')
 
 @admin.register(Prestamo)
 class PrestamoAdmin(admin.ModelAdmin):
