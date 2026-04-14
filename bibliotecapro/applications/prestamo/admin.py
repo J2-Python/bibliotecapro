@@ -8,7 +8,7 @@ class EstudianteAdmin(admin.ModelAdmin):
 
 @admin.register(Prestamo)
 class PrestamoAdmin(admin.ModelAdmin):
-    list_display=('book','student','date')
+    list_display=('book','student','date',id)
 
 #admin.site.register(Estudiante)
 #admin.site.register(Prestamo)
