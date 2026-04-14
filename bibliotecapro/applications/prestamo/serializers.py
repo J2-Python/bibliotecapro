@@ -12,13 +12,15 @@ class PrestamoSerializer(serializers.ModelSerializer):
         fields = ("book", "student", "description")
 
 
-class DevolucionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Devolucion
-        fields = "loan"
 
 
 class EstudianteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Estudiante
-        fields = ("dni", "name", "last_name", "date_birth")
+        #! django sabe que a pesar de que id (campo automatico) esta especificado en el serializador, este no es requerido al momento del create.
+        fields = ("id","dni", "name", "last_name", "date_birth")
+
+class DevolucionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Devolucion
+        fields=('id','loan',)

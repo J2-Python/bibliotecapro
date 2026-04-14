@@ -10,6 +10,9 @@ class EstudianteAdmin(admin.ModelAdmin):
 class PrestamoAdmin(admin.ModelAdmin):
     list_display=('book','student','date',id)
 
+@admin.register(Devolucion)
+class DevolucionAdmin(admin.ModelAdmin):
+    list_display=('loan','date',id)
 #admin.site.register(Estudiante)
 #admin.site.register(Prestamo)
-admin.site.register(Devolucion)
+#admin.site.register(Devolucion)

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ListarPrestamos,RegistrarPrestamo,RegistrarDevolucion,RegistrarEstudiante,UpdateEstudiante
+from .views import DeleteDevolucion, ListarPrestamos,RegistrarPrestamo,RegistrarDevolucion,RegistrarEstudiante,UpdateEstudiante
 #! este archivo tiene que ser referenciado en el archivo urls.py principal del proyecto que es el unico que reconoce python.
 app_name='prestamo_app'
 urlpatterns = [
@@ -8,5 +8,7 @@ urlpatterns = [
     path('api/prestamo/create/',RegistrarPrestamo.as_view()),
     path('api/devolucion/create/',RegistrarDevolucion.as_view()),
     path('api/estudiante/create/',RegistrarEstudiante.as_view()),
-    path('api/estudiante/update/<pk>/',UpdateEstudiante.as_view())
+    path('api/estudiante/update/<pk>/',UpdateEstudiante.as_view()),
+    path('api/estudiante/update/<pk>/',UpdateEstudiante.as_view()),
+    path('api/devolucion/delete/<pk>/',DeleteDevolucion.as_view())
 ]
